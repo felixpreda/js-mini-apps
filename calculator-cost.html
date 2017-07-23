@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator cantitate</title>
+
+    <style>
+        body,
+        .jumbotron {
+            padding: 30px
+        }
+        
+        .jumbotron {
+            width: 400px;
+            margin-top: 50px;
+        }
+        
+        .text-giant {
+            font-size: 40px;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <h1>Calculator cantitate</h1>
+    <a href="index.html">Toate aplicatiile</a>
+    <div class="jumbotron">
+        <h2>How much do pies cost?</h2>
+
+        <div class="form-group">
+            <label for="priceInput">Price</label>
+            <input type="text" name="price" class="form-control" value="10">
+        </div>
+
+        <div class="form-group">
+            <label for="quantityInput">Quantity <span class="label label-primary">1</span></label>
+            <input type="range" name="quantity" min="1" max="12" step="1" class="form-control" value="1">
+        </div>
+
+        <div class="text-right text-giant">$10</div>
+    </div>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script>
+        let priceInput = document.querySelector('[name=price]');
+        let quantityInput = document.querySelector('[name=quantity]');
+        let labelQuantity = document.querySelector('.label-primary');
+        let cost = document.querySelector('.text-giant');
+
+        priceInput.addEventListener('input', calculateCost);
+        quantityInput.addEventListener('input', calculateCost);
+        quantityInput.addEventListener('input', updateQt);
+
+        calculateCost();
+
+        function calculateCost() {
+            let price = priceInput.value;
+            let quantity = quantityInput.value;
+            let total = Number.isInteger(price * quantity) ? price * quantity : (price * quantity).toFixed(2);
+
+            cost.innerHTML = `$${total}`;
+        }
+
+        function updateQt() {
+            let quantity = quantityInput.value;
+
+            labelQuantity.innerHTML = quantity;
+        }
+    </script>
+</body>
+
+</html>

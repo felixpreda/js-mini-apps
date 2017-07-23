@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stopwatch</title>
+
+    <style>
+        body,
+        .jumbotron {
+            padding: 30px
+        }
+        
+        .jumbotron {
+            margin-top: 50px;
+            width: 500px;
+        }
+        
+        .timer {
+            font-size: 120px;
+        }
+    </style>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Crazy buttons</h1>
+    <a href="index.html">Toate aplicatiile</a>
+    <div class="jumbotron text-center">
+        <div class="timer">
+            <span class="minutes">00</span> : <span class="seconds">00</span>
+        </div>
+        <button type="button" class="btn btn-lg btn-success" data-action="start">Start</button>
+        <button type="button" class="btn btn-lg btn-danger" data-action="stop">Stop</button>
+        <button type="button" class="btn btn-link btn-block" data-action="reset">Reset</button>
+    </div>
+
+    <script>
+        const minutes = document.querySelector('.minutes');
+        const seconds = document.querySelector('.seconds');
+        const start = document.querySelector('[data-action=start]');
+        const stop = document.querySelector('[data-action=stop]');
+        const reset = document.querySelector('[data-action=reset]');
+        let timer = 0;
+        let isRunning = false;
+        let interval;
+
+
+        function startTimer() {
+            if (isRunning) return;
+
+            isRunning = true;
+            interval = setInterval(counter, 1000);
+        }
+
+        function stopTimer() {
+            if (!isRunning) return;
+
+            isRunning = false;
+            clearInterval(interval);
+        }
+
+        function resetTimer() {
+            stopTimer();
+
+            timer = 0;
+            minutes.innerText = '00';
+            seconds.innerText = '00';
+        }
+
+        function counter() {
+            timer++;
+
+            let numOfMin = Math.floor(timer / 60);
+            let numOfSec = timer % 60;
+
+            minutes.innerText = numOfMin.toString().padStart(2, '0');
+            seconds.innerText = numOfSec.toString().padStart(2, '0');
+        }
+
+        start.addEventListener('click', startTimer);
+        stop.addEventListener('click', stopTimer);
+        reset.addEventListener('click', resetTimer);
+    </script>
+</body>
+
+</html>

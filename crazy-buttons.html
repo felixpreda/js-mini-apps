@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crazy buttons</title>
+
+    <style>
+        body,
+        .jumbotron {
+            padding: 30px
+        }
+        
+        .jumbotron {
+            margin-top: 50px;
+            position: relative;
+            height: 600px;
+        }
+        
+        .btn {
+            width: 200px;
+            height: 50px;
+            position: absolute;
+            top: 20px;
+            left: 400px;
+            transition: .5s ease all;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <h1>Crazy buttons</h1>
+    <a href="index.html">Toate aplicatiile</a>
+    <div class="jumbotron">
+        <button type="button" class="btn btn-danger">Apasa</button>
+        <button type="button" class="btn btn-primary">Apasa</button>
+        <button type="button" class="btn btn-success">Apasa</button>
+    </div>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script>
+        let buttons = document.querySelectorAll('.btn');
+        const jumbo = document.querySelector('.jumbotron');
+
+        function goCrazy() {
+            let offsetLeft = Math.random() * (jumbo.clientWidth - this.clientWidth);
+            let offsetTop = Math.random() * (jumbo.clientHeight - this.clientHeight);
+
+            this.style.top = `${offsetTop}px`;
+            this.style.left = `${offsetLeft}px`;
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', goCrazy);
+        });
+    </script>
+</body>
+
+</html>
